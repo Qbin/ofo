@@ -153,11 +153,11 @@
                 alert('账号:' + username1.value + '\b\r' + '密码:' + password1.value);
                 $.ajax({
                     type: "POST",
-                    url: "/add_vehicle/";
+                    url: "/add_vehicle/",
                     data: {
                         vehicle_id: username1,
                         password: password1
-                    };
+                    },
                     dataType: 'json',
                     success: function(data) {
                         if (data.is_ok) {
@@ -192,10 +192,10 @@
             alert('账号：' + username2.value);
             $.ajax({
                 type: "POST",
-                url: "/find_vehicle/";
+                url: "/find_vehicle/",
                 data: {
                     vehicle_id: username2
-                };
+                },
                 dataType: 'json',
                 success: function(data) {
                     if (data.is_ok) {
