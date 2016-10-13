@@ -140,9 +140,10 @@
                 this.nextSibling.innerHTML="请输入4位数字";
             }
         }
+
         btn3.onclick=function(){
             if (regU.test(username1.value)&&regP.test(password1.value)) {
-                alert("谢谢提供");
+                alert('账号:'+username1.value+'\b\r'+'密码:'+password1.value);
             }else {
                 alert("输入错误，请重新输入");
                 return false;
