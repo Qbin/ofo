@@ -33,6 +33,7 @@ def add_vehicle(request):
                          "msg": "add successful"
                          })
     
+@csrf_exempt
 def find_vehicle(request):
     """find vehicle password by vehicle's id"""
     if request.method != "POST":
