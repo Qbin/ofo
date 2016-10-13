@@ -5,8 +5,9 @@ from boss.models import Vehicle
 from boss.forms import VehicleAddForm, VehicleFindForm 
 
 from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 
-#@csrf_exempt
+@csrf_exempt
 #@login_required
 def add_vehicle(request):
     """add vehicle info"""

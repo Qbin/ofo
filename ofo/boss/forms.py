@@ -27,10 +27,10 @@ class VehicleAddForm(forms.Form):
     def clean_password(self):
         password = self.cleaned_data['password']
         try:
-            int(vehicle_id)
+            int(password)
         except Exception as e:
             raise forms.ValidationError(u"密码应为4位整数") 
-        if len(vehicle_id) == 4:
+        if len(password) == 4:
             return password
 
         raise forms.ValidationError(u"密码应为4位整数") 
