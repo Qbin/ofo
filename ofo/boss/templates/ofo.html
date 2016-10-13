@@ -76,7 +76,7 @@
 <body>
     <button id="btn1">上传ofo</button>
     <button id="btn2">获取ofo</button>
-    <form id="box1">
+    <form id="box1" class="hide">
         <fieldset>
             <legend>请录入车牌号与密码:</legend>
             <label>车牌号：
@@ -85,11 +85,11 @@
                 <input type="search" name="password" id="password1"><span></span><br/>
             </label>
             <label class="btn" id="btn3">
-                <input type="submit" name="submit1" class="submit" >
+                <input type="submit" name="submit1" class="submit">
             </label>
         </fieldset>
     </form>
-    <form id="box2" class="hide">
+    <form id="box2">
         <fieldset>
             <legend>请输入车牌号获取密码:</legend>
             <label>车牌号：
@@ -161,7 +161,7 @@
         var mima=document.getElementById('mima');
         btn4.onclick=function(){
             if (regU.test(username2.value)) {
-                alert("密码....");
+                alert(username2.value);
             }else{
                 alert("账号输入错误")
                 return false;
