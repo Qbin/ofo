@@ -100,6 +100,7 @@
             </label>
         </fieldset>
     </form>
+    <script src='jquery-1.12.2.min.js'></script>
     <script>
     //判断提交还是获取
     var btn1=document.getElementById('btn1');
@@ -161,12 +162,47 @@
         var mima=document.getElementById('mima');
         btn4.onclick=function(){
             if (regU.test(username2.value)) {
-                alert(username2.value);
+                alert('账号：'+username2.value);
             }else{
                 alert("账号输入错误")
                 return false;
             }
         }
+
+        //交互
+        $.ajax({
+            type:"POST",
+            url:"http://127.0.0.1:8000/add_vehicle/";
+            data:;
+            dataType: 'json',
+            success:function(data){
+                if (data.is_ok) {
+                    alert("ok");
+                }else {
+                    alert("no");
+                }
+            },
+            error:function(data){
+                alert("错误");
+            }
+        });
+
+        $.ajax({
+            type:"POST",
+            url:"http://127.0.0.1:8000/find_vehicle/";
+            data:;
+            dataType: 'json',
+            success:function(data){
+                if (data.is_ok) {
+                    alert("ok");
+                }else {
+                    alert("no");
+                }
+            },
+            error:function(data){
+                alert("错误");
+            }
+        });
     </script>
 </body>
 
