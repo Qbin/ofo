@@ -14,13 +14,11 @@
     }
     
     form {
-        display: none;
         max-width: 640px;
         width: 100%;
         margin: 24px auto;
         font-size: 28px;
     }
-    
     label {
         display: block;
         margin: 10px 10px 15px;
@@ -78,7 +76,7 @@
 <body>
     <button id="btn1">上传ofo</button>
     <button id="btn2">获取ofo</button>
-    <form id="box1">
+    <form id="box1" class="hide">
         <fieldset>
             <legend>请录入车牌号与密码:</legend>
             <label>车牌号：
@@ -140,9 +138,10 @@
                 this.nextSibling.innerHTML="请输入4位数字";
             }
         }
+
         btn3.onclick=function(){
             if (regU.test(username1.value)&&regP.test(password1.value)) {
-                alert("谢谢提供");
+                alert('账号:'+username1.value+'\b\r'+'密码:'+password1.value);
             }else {
                 alert("输入错误，请重新输入");
                 return false;
@@ -162,7 +161,7 @@
         var mima=document.getElementById('mima');
         btn4.onclick=function(){
             if (regU.test(username2.value)) {
-                alert("密码....");
+                alert(username2.value);
             }else{
                 alert("账号输入错误")
                 return false;
