@@ -3,11 +3,11 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
+    <title>ufo</title>
     <style>
     body {
         margin: 0;
-        padding: 0;
+        padding: 10% 0 0 0;
         background-color: #F7F7F7;
         font-family: '微软雅黑';
         text-align: center;
@@ -92,7 +92,7 @@
                 <br/>
             </label>
             <label class="btn" id="btn3">
-                <input type="submit" name="submit1" class="submit">
+                <input type="button" name="submit1" class="submit" value="上传">
             </label>
         </fieldset>
     </form>
@@ -104,12 +104,12 @@
                 <br/>
             </label>
             <label class="btn" id="btn4">
-                <input type="submit" name="submit2" class="obtain" value="获取">
+                <input type="button" name="submit2" class="obtain" value="获取">
             </label>
         </fieldset>
     </form>
-    <script src='jquery-1.11.3.min.js'></script>
-    <script>
+	<script src="//cdn.bootcss.com/jquery/1.11.1/jquery.js"></script>
+    <script type="text/javascript">
     //判断提交还是获取
     var btn1 = document.getElementById('btn1');
     var btn2 = document.getElementById('btn2');
@@ -131,7 +131,7 @@
     var regU = /^[0-9]\d{5}$/;
     var regP = /^[0-9]\d{3}$/;
     //提交
-    username1.onkeyup = function() {
+    username1.onblur = function() {
         if (regU.test(this.value)) {
             this.nextSibling.innerHTML = "";
             this.nextSibling.innerHTML = "输入正确";
@@ -139,7 +139,7 @@
             this.nextSibling.innerHTML = "请输入6位数字";
         }
     }
-    password1.onkeyup = function() {
+    password1.onblur = function() {
         if (regP.test(this.value)) {
             this.nextSibling.innerHTML = "";
             this.nextSibling.innerHTML = "输入正确";
@@ -147,36 +147,43 @@
             this.nextSibling.innerHTML = "请输入4位数字";
         }
     }
-
+	
     btn3.onclick = function() {
             if (regU.test(username1.value) && regP.test(password1.value)) {
-                alert('账号:' + username1.value + '\b\r' + '密码:' + password1.value);
-                $.ajax({
-                    type: "POST",
-                    url: "/add_vehicle/",
-                    data: {
-                        vehicle_id: username1,
-                        password: password1
-                    },
-                    dataType: 'json',
-                    success: function(data) {
-                        if (data.is_ok) {
-                            alert("ok");
-                        } else {
-                            alert("no");
-                        }
-                    },
-                    error: function(data) {
-                        alert("错误");
-                    }
-                });
+                if(window.confirm('账号:' + username1.value + '\b\r' + '密码:' + password1.value)){
+                		 $.ajax({
+	                    type: "POST",
+	                    url: "/add_vehicle/",
+	                    data: {
+	                        vehicle_id: username1.value,
+	                        password: password1.value
+	                    },
+	                    dataType: 'json',
+	                    success: function(data) {
+	                        if (data.is_ok) {
+	                            alert("ok");
+	                        } else {
+	                            alert(data.msg);
+	                        }
+	                    },
+	                    error: function(data) {
+	                        alert("错误");
+	                    }
+	                });
+                }else{
+                		username1.value = '';
+                		username1.nextSibling.innerHTML = '';
+                		password1.value = '';
+                		password1.nextSibling.innerHTML = '';
+                }
+               
             } else {
                 alert("输入错误，请重新输入");
                 return false;
             }
         }
         //获取
-    username2.onkeyup = function() {
+    username2.onblur = function() {
         if (regU.test(this.value)) {
             this.nextSibling.innerHTML = "";
             this.nextSibling.innerHTML = "输入正确";
@@ -189,19 +196,18 @@
     var mima = document.getElementById('mima');
     btn4.onclick = function() {
         if (regU.test(username2.value)) {
-            alert('账号：' + username2.value);
             $.ajax({
                 type: "POST",
                 url: "/find_vehicle/",
                 data: {
-                    vehicle_id: username2
+                    vehicle_id: username2.value
                 },
                 dataType: 'json',
                 success: function(data) {
                     if (data.is_ok) {
-                        alert("ok");
+                        alert('密码是：'+data.msg);
                     } else {
-                        alert("no");
+                        alert(data.msg);
                     }
                 },
                 error: function(data) {
